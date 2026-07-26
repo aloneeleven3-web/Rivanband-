@@ -261,23 +261,14 @@
 
   /* ===== About ===== */
   .about{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:60px;
-    align-items:center;
+    max-width:760px;
+    margin:0 auto;
+    text-align:center;
   }
-  .about-visual{
-    border-radius:24px;
-    overflow:hidden;
-    border:1px solid var(--line);
-    box-shadow:var(--shadow);
-  }
+  .about .eyebrow{justify-content:center;}
   .about-text h2{font-size:clamp(1.7rem,3.6vw,2.3rem); color:var(--gold-bright); margin-bottom:20px;}
   .about-text p{color:var(--cream); opacity:.9; margin-bottom:16px;}
   .about-text p strong{color:var(--gold-bright);}
-  @media (max-width:860px){
-    .about{grid-template-columns:1fr;}
-  }
 
   /* ===== Contact ===== */
   .contact{
@@ -447,9 +438,6 @@
 
   <section id="about">
     <div class="wrap about">
-      <div class="about-visual">
-        <img src="poster1.jpg" alt="اجرای زنده ریوان بند - سوپرایز موزیک قزوین" loading="lazy">
-      </div>
       <div class="about-text">
         <div class="eyebrow">درباره‌ی ما</div>
         <h2>ریوان بند، صدای لحظه‌های خاص قزوین</h2>
