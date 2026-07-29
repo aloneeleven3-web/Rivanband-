@@ -200,6 +200,38 @@
     width:220px; height:220px;
     margin:0 auto 30px;
   }
+  .vinyl-halo{
+    position:absolute; inset:-22px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(248,216,120,.35) 0%, rgba(232,178,61,.15) 45%, transparent 72%);
+    animation:halo-breathe 3.6s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes halo-breathe{
+    0%,100%{opacity:.55; transform:scale(.94);}
+    50%{opacity:1; transform:scale(1.06);}
+  }
+  .vinyl-reflection{
+    position:absolute; left:50%; bottom:-22px;
+    width:70%; height:22px;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:radial-gradient(ellipse, rgba(232,178,61,.4) 0%, transparent 75%);
+    filter:blur(2px);
+  }
+  .sparkle{
+    position:absolute;
+    color:var(--gold-bright);
+    text-shadow:0 0 8px rgba(248,216,120,.9);
+    animation:twinkle 2.6s ease-in-out infinite;
+  }
+  .sp-1{top:6%; left:18%; font-size:14px; animation-delay:0s;}
+  .sp-2{top:70%; left:88%; font-size:11px; animation-delay:.9s;}
+  .sp-3{top:80%; left:8%; font-size:16px; animation-delay:1.7s;}
+  @keyframes twinkle{
+    0%,100%{opacity:.15; transform:scale(.7);}
+    50%{opacity:1; transform:scale(1.15);}
+  }
   .vinyl{
     width:100%; height:100%;
     display:block;
@@ -585,39 +617,39 @@
   <section class="hero">
     <div class="wrap">
       <div class="vinyl-stage">
+        <div class="vinyl-halo"></div>
+        <div class="vinyl-reflection"></div>
         <svg class="vinyl" viewBox="0 0 200 200" aria-hidden="true">
           <defs>
             <radialGradient id="discBody" cx="35%" cy="30%" r="75%">
-              <stop offset="0%" stop-color="#2a2318"/>
+              <stop offset="0%" stop-color="#2f2718"/>
               <stop offset="55%" stop-color="#14110c"/>
-              <stop offset="100%" stop-color="#080704"/>
+              <stop offset="100%" stop-color="#050403"/>
             </radialGradient>
-            <radialGradient id="labelGold" cx="35%" cy="30%" r="75%">
-              <stop offset="0%" stop-color="#f8d878"/>
-              <stop offset="55%" stop-color="#e8b23d"/>
-              <stop offset="100%" stop-color="#b9822a"/>
-            </radialGradient>
-            <linearGradient id="glossSweep" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#ffffff" stop-opacity=".16"/>
-              <stop offset="35%" stop-color="#ffffff" stop-opacity="0"/>
-            </linearGradient>
+            <clipPath id="labelClip">
+              <circle cx="100" cy="100" r="38"/>
+            </clipPath>
           </defs>
-          <circle cx="100" cy="100" r="98" fill="url(#discBody)" stroke="#3a2f1e" stroke-width="1"/>
-          <circle cx="100" cy="100" r="90" fill="none" stroke="#2a2216" stroke-width="1"/>
-          <circle cx="100" cy="100" r="80" fill="none" stroke="#2a2216" stroke-width="1.4"/>
-          <circle cx="100" cy="100" r="73" fill="none" stroke="#241c13" stroke-width="1"/>
-          <circle cx="100" cy="100" r="66" fill="none" stroke="#2a2216" stroke-width="1.4"/>
-          <circle cx="100" cy="100" r="59" fill="none" stroke="#241c13" stroke-width="1"/>
-          <circle cx="100" cy="100" r="52" fill="none" stroke="#2a2216" stroke-width="1.4"/>
-          <circle cx="100" cy="100" r="98" fill="url(#glossSweep)"/>
-          <circle cx="100" cy="100" r="40" fill="url(#labelGold)" stroke="#8a601f" stroke-width="1"/>
-          <path id="circlePath" fill="none" d="M 100,100 m -60,0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"/>
-          <text font-size="9" fill="#e8b23d" letter-spacing="2">
+          <circle cx="100" cy="100" r="98" fill="url(#discBody)" stroke="#8a601f" stroke-width="1.2"/>
+          <circle cx="100" cy="100" r="93" fill="none" stroke="#e8b23d" stroke-width=".6" opacity=".35" stroke-dasharray="1.4 4.2"/>
+          <circle cx="100" cy="100" r="84" fill="none" stroke="#2a2216" stroke-width="1"/>
+          <circle cx="100" cy="100" r="76" fill="none" stroke="#332813" stroke-width="1.6"/>
+          <circle cx="100" cy="100" r="68" fill="none" stroke="#241c13" stroke-width="1"/>
+          <circle cx="100" cy="100" r="60" fill="none" stroke="#332813" stroke-width="1.6"/>
+          <circle cx="100" cy="100" r="52" fill="none" stroke="#241c13" stroke-width="1"/>
+          <circle cx="100" cy="100" r="45" fill="none" stroke="#8a601f" stroke-width="1"/>
+          <circle cx="100" cy="100" r="40" fill="#0e0c08"/>
+          <image href="logo.jpg" x="62" y="62" width="76" height="76" clip-path="url(#labelClip)" preserveAspectRatio="xMidYMid slice"/>
+          <circle cx="100" cy="100" r="38" fill="none" stroke="#e8b23d" stroke-width="1.4"/>
+          <circle cx="100" cy="100" r="4" fill="#14110c" stroke="#e8b23d" stroke-width=".6"/>
+          <path id="circlePath" fill="none" d="M 100,100 m -88,0 a 88,88 0 1,1 176,0 a 88,88 0 1,1 -176,0"/>
+          <text font-size="8" fill="#e8b23d" letter-spacing="2" opacity=".85">
             <textPath href="#circlePath" startOffset="0%">سوپرایز موزیک قزوین • ریوان بند • سوپرایز موزیک قزوین •</textPath>
           </text>
-          <circle cx="100" cy="100" r="6" fill="#14110c"/>
-          <circle cx="100" cy="100" r="2" fill="#3a2f1e"/>
         </svg>
+        <span class="sparkle sp-1">✦</span>
+        <span class="sparkle sp-2">✦</span>
+        <span class="sparkle sp-3">✦</span>
         <span class="note note-1">♪</span>
         <span class="note note-2">♫</span>
         <span class="note note-3">♬</span>
