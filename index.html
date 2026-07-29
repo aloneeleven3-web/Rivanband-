@@ -77,6 +77,11 @@
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "چه پکیج‌های سورپرایزی دارید؟",
+      "acceptedAnswer": {"@type": "Answer", "text": "سورپرایز تلفنی: اجرای زنده‌ی موسیقی همراه با پیام دلخواه. سورپرایز حضوری در سه سطح: اجرای دو نفره (گیتار و خواننده)، اجرای سه نفره (گیتار، خواننده و کاخن)، و اجرای چهار نفره (گیتار، خواننده، کاخن و ویولن)."}
+    },
+    {
+      "@type": "Question",
       "name": "چقدر قبل از مراسم باید رزرو کنیم؟",
       "acceptedAnswer": {"@type": "Answer", "text": "پیشنهاد می‌شود حداقل چند روز تا یک هفته قبل از تاریخ مورد نظر هماهنگ کنید تا وقت کافی برای آماده‌سازی اجرا وجود داشته باشد."}
     },
@@ -160,6 +165,18 @@
   }
   .call-btn:hover{transform:translateY(-2px); box-shadow:0 12px 26px -8px rgba(232,178,61,.8);}
   .call-btn svg{width:16px; height:16px; fill:#1a1408;}
+  .header-actions{display:flex; align-items:center; gap:10px;}
+  .insta-icon-btn{
+    width:40px; height:40px;
+    border-radius:50%;
+    border:1.5px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    transition:background .2s, transform .2s;
+  }
+  .insta-icon-btn:hover{background:var(--gold); transform:translateY(-2px);}
+  .insta-icon-btn svg{width:18px; height:18px; fill:none; stroke:var(--gold-bright); stroke-width:1.7;}
+  .insta-icon-btn:hover svg{stroke:#1a1408;}
 
   @media (max-width:780px){
     nav{display:none;}
@@ -178,14 +195,59 @@
     text-align:center;
     overflow:hidden;
   }
-  .vinyl{
+  .vinyl-stage{
+    position:relative;
     width:220px; height:220px;
     margin:0 auto 30px;
+  }
+  .vinyl{
+    width:100%; height:100%;
+    display:block;
+    filter:drop-shadow(0 18px 34px rgba(0,0,0,.55));
     animation:spin 14s linear infinite;
   }
   @keyframes spin{to{transform:rotate(360deg);}}
+  .note{
+    position:absolute; top:50%; left:50%;
+    font-size:38px;
+    font-weight:700;
+    color:var(--gold-bright);
+    text-shadow:0 0 8px rgba(232,178,61,.9), 0 0 20px rgba(232,178,61,.5);
+    opacity:0;
+    pointer-events:none;
+    animation-duration:14s;
+    animation-timing-function:ease-out;
+    animation-iteration-count:infinite;
+  }
+  .note-1{animation-name:note-fly-1; animation-delay:0s;}
+  .note-2{animation-name:note-fly-2; animation-delay:3.5s;}
+  .note-3{animation-name:note-fly-3; animation-delay:7s;}
+  .note-4{animation-name:note-fly-4; animation-delay:10.5s;}
+  @keyframes note-fly-1{
+    0%{transform:rotate(10deg) translate(65px) rotate(-10deg) scale(.4); opacity:0;}
+    15%{opacity:1; transform:rotate(45deg) translate(110px) rotate(-45deg) scale(1.3);}
+    50%{opacity:.9;}
+    100%{transform:rotate(100deg) translate(200px) rotate(-100deg) scale(1.6); opacity:0;}
+  }
+  @keyframes note-fly-2{
+    0%{transform:rotate(100deg) translate(65px) rotate(-100deg) scale(.4); opacity:0;}
+    15%{opacity:1; transform:rotate(135deg) translate(110px) rotate(-135deg) scale(1.3);}
+    50%{opacity:.9;}
+    100%{transform:rotate(190deg) translate(200px) rotate(-190deg) scale(1.6); opacity:0;}
+  }
+  @keyframes note-fly-3{
+    0%{transform:rotate(190deg) translate(65px) rotate(-190deg) scale(.4); opacity:0;}
+    15%{opacity:1; transform:rotate(225deg) translate(110px) rotate(-225deg) scale(1.3);}
+    50%{opacity:.9;}
+    100%{transform:rotate(280deg) translate(200px) rotate(-280deg) scale(1.6); opacity:0;}
+  }
+  @keyframes note-fly-4{
+    0%{transform:rotate(280deg) translate(65px) rotate(-280deg) scale(.4); opacity:0;}
+    15%{opacity:1; transform:rotate(315deg) translate(110px) rotate(-315deg) scale(1.3);}
+    50%{opacity:.9;}
+    100%{transform:rotate(370deg) translate(200px) rotate(-370deg) scale(1.6); opacity:0;}
+  }
   @media (prefers-reduced-motion: reduce){
-    .vinyl{animation:none;}
   }
   .hero h1{
     font-size:clamp(2.1rem, 6vw, 4.2rem);
@@ -215,8 +277,10 @@
     border-radius:30px;
     font-weight:700;
     font-size:1rem;
+    display:flex; align-items:center; gap:10px;
     box-shadow:0 10px 30px -10px rgba(232,178,61,.7);
   }
+  .btn-solid svg{width:19px; height:19px; fill:#1a1408;}
 
   .waveform{width:100%; max-width:640px; margin:56px auto 0; opacity:.8;}
   .waveform path{
@@ -344,6 +408,24 @@
   .faq-item[open] summary{color:var(--gold-bright);}
   .faq-item p{color:var(--brass); font-size:.92rem; line-height:1.9; padding-bottom:18px;}
   .faq-item p a{color:var(--gold-bright); font-weight:600;}
+  .faq-packages{padding-bottom:18px;}
+  .faq-packages p{color:var(--cream); font-size:.92rem; line-height:1.9; padding-bottom:6px;}
+  .faq-packages p strong{color:var(--gold-bright);}
+  .faq-packages ul{list-style:none; padding-inline-start:0; margin-top:6px;}
+  .faq-packages li{
+    color:var(--brass);
+    font-size:.9rem;
+    padding:8px 0 8px 0;
+    padding-inline-start:20px;
+    position:relative;
+    border-top:1px solid var(--line);
+  }
+  .faq-packages li::before{
+    content:"♪";
+    position:absolute;
+    inset-inline-start:0;
+    color:var(--gold);
+  }
 
   /* ===== Reviews ===== */
   .reviews-toggle{
@@ -427,19 +509,24 @@
   .phone-big{
     display:inline-flex;
     align-items:center;
-    gap:14px;
-    font-family:'Lalezar', sans-serif;
-    font-size:clamp(1.8rem, 5vw, 3rem);
-    color:#1a1408;
+    justify-content:center;
+    width:92px; height:92px;
     background:var(--gold);
-    padding:20px 44px;
-    border-radius:60px;
+    border-radius:50%;
     box-shadow:0 16px 40px -12px rgba(232,178,61,.6);
-    direction:ltr;
     transition:transform .2s;
+    animation:phone-pulse 2.4s ease-in-out infinite;
   }
-  .phone-big:hover{transform:scale(1.03);}
-  .phone-big svg{width:30px; height:30px; fill:#1a1408;}
+  .phone-big:hover{transform:scale(1.06);}
+  .phone-big svg{width:38px; height:38px; fill:#1a1408;}
+  @keyframes phone-pulse{
+    0%,100%{box-shadow:0 16px 40px -12px rgba(232,178,61,.6), 0 0 0 0 rgba(232,178,61,.35);}
+    50%{box-shadow:0 16px 40px -12px rgba(232,178,61,.6), 0 0 0 16px rgba(232,178,61,0);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .phone-big{animation:none;}
+  }
+  .phone-caption{display:block; color:var(--brass); font-size:.9rem; margin-top:14px;}
   .insta-handle{
     display:inline-flex; align-items:center; gap:10px;
     margin-top:22px;
@@ -481,10 +568,15 @@
       <a href="#about">درباره ما</a>
       <a href="#contact">تماس</a>
     </nav>
-    <a class="call-btn" href="tel:09106109622">
-      <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1L6.6 10.8z"/></svg>
-      تماس فوری
-    </a>
+    <div class="header-actions">
+      <a class="insta-icon-btn" href="https://ig.me/m/rivanband1" target="_blank" rel="noopener" aria-label="اینستاگرام ریوان بند">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="call-btn" href="tel:09106109622">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1L6.6 10.8z"/></svg>
+        تماس فوری
+      </a>
+    </div>
   </div>
 </header>
 
@@ -492,25 +584,55 @@
 
   <section class="hero">
     <div class="wrap">
-      <svg class="vinyl" viewBox="0 0 200 200" aria-hidden="true">
-        <circle cx="100" cy="100" r="98" fill="#0e0c08" stroke="#3a2f1e" stroke-width="1"/>
-        <circle cx="100" cy="100" r="80" fill="none" stroke="#241c13" stroke-width="2"/>
-        <circle cx="100" cy="100" r="66" fill="none" stroke="#241c13" stroke-width="2"/>
-        <circle cx="100" cy="100" r="52" fill="none" stroke="#241c13" stroke-width="2"/>
-        <circle cx="100" cy="100" r="40" fill="#e8b23d"/>
-        <path id="circlePath" fill="none" d="M 100,100 m -60,0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"/>
-        <text font-size="9" fill="#e8b23d" letter-spacing="2">
-          <textPath href="#circlePath" startOffset="0%">سوپرایز موزیک قزوین • ریوان بند • سوپرایز موزیک قزوین •</textPath>
-        </text>
-        <circle cx="100" cy="100" r="6" fill="#0e0c08"/>
-      </svg>
+      <div class="vinyl-stage">
+        <svg class="vinyl" viewBox="0 0 200 200" aria-hidden="true">
+          <defs>
+            <radialGradient id="discBody" cx="35%" cy="30%" r="75%">
+              <stop offset="0%" stop-color="#2a2318"/>
+              <stop offset="55%" stop-color="#14110c"/>
+              <stop offset="100%" stop-color="#080704"/>
+            </radialGradient>
+            <radialGradient id="labelGold" cx="35%" cy="30%" r="75%">
+              <stop offset="0%" stop-color="#f8d878"/>
+              <stop offset="55%" stop-color="#e8b23d"/>
+              <stop offset="100%" stop-color="#b9822a"/>
+            </radialGradient>
+            <linearGradient id="glossSweep" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity=".16"/>
+              <stop offset="35%" stop-color="#ffffff" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <circle cx="100" cy="100" r="98" fill="url(#discBody)" stroke="#3a2f1e" stroke-width="1"/>
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#2a2216" stroke-width="1"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#2a2216" stroke-width="1.4"/>
+          <circle cx="100" cy="100" r="73" fill="none" stroke="#241c13" stroke-width="1"/>
+          <circle cx="100" cy="100" r="66" fill="none" stroke="#2a2216" stroke-width="1.4"/>
+          <circle cx="100" cy="100" r="59" fill="none" stroke="#241c13" stroke-width="1"/>
+          <circle cx="100" cy="100" r="52" fill="none" stroke="#2a2216" stroke-width="1.4"/>
+          <circle cx="100" cy="100" r="98" fill="url(#glossSweep)"/>
+          <circle cx="100" cy="100" r="40" fill="url(#labelGold)" stroke="#8a601f" stroke-width="1"/>
+          <path id="circlePath" fill="none" d="M 100,100 m -60,0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"/>
+          <text font-size="9" fill="#e8b23d" letter-spacing="2">
+            <textPath href="#circlePath" startOffset="0%">سوپرایز موزیک قزوین • ریوان بند • سوپرایز موزیک قزوین •</textPath>
+          </text>
+          <circle cx="100" cy="100" r="6" fill="#14110c"/>
+          <circle cx="100" cy="100" r="2" fill="#3a2f1e"/>
+        </svg>
+        <span class="note note-1">♪</span>
+        <span class="note note-2">♫</span>
+        <span class="note note-3">♬</span>
+        <span class="note note-4">♩</span>
+      </div>
 
       <div class="eyebrow" style="justify-content:center;">اجرای زنده در قزوین</div>
       <h1>سوپرایز موزیک قزوین</h1>
       <p class="lead">ریوان بند لحظه‌های عاشقانه، تولد و جشنتون رو با اجرای زنده و سورپرایز موزیک به یادموندنی‌ترین خاطره تبدیل می‌کنه.</p>
 
       <div class="hero-actions">
-        <a class="btn-solid" href="tel:09106109622">رزرو و هماهنگی: 09106109622</a>
+        <a class="btn-solid" href="tel:09106109622">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1L6.6 10.8z"/></svg>
+          رزرو و هماهنگی
+        </a>
         <a class="btn-ghost" href="#videos">دیدن ویدیوهای اجرا</a>
         <a class="btn-ghost" href="#reviews">دیدن نظر مشتریان</a>
       </div>
@@ -652,6 +774,18 @@
       </div>
       <div class="faq-list">
         <details class="faq-item">
+          <summary>چه پکیج‌های سورپرایزی دارید؟</summary>
+          <div class="faq-packages">
+            <p><strong>سورپرایز تلفنی</strong> — اجرای زنده‌ی موسیقی مخصوص عزیز شما، همراه با یک پیام دلخواه از طرف شما.</p>
+            <p><strong>سورپرایز حضوری</strong></p>
+            <ul>
+              <li>اجرای دو نفره: گیتار و خواننده</li>
+              <li>اجرای سه نفره: گیتار، خواننده و کاخن</li>
+              <li>اجرای چهار نفره: گیتار، خواننده، کاخن و ویولن</li>
+            </ul>
+          </div>
+        </details>
+        <details class="faq-item">
           <summary>چقدر قبل از مراسم باید رزرو کنیم؟</summary>
           <p>پیشنهاد ما اینه که حداقل چند روز تا یک هفته قبل از تاریخ مورد نظرتون هماهنگ کنید تا وقت کافی برای آماده‌سازی اجرا داشته باشیم.</p>
         </details>
@@ -684,10 +818,10 @@
       <div class="eyebrow" style="justify-content:center;">رزرو و هماهنگی</div>
       <h2>وقت سورپرایز ساختن رسیده</h2>
       <p>برای هماهنگی تاریخ مراسم و مشاوره رایگان همین الان تماس بگیرید</p>
-      <a class="phone-big" href="tel:09106109622">
+      <a class="phone-big" href="tel:09106109622" aria-label="تماس با ریوان بند">
         <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1L6.6 10.8z"/></svg>
-        0910 610 9622
       </a>
+      <span class="phone-caption">برای تماس مستقیم لمس کنید</span>
       <a class="insta-handle" href="https://instagram.com/rivanband1" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
         <span dir="ltr">@rivanband1</span>
