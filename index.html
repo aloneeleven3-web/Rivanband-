@@ -18,6 +18,9 @@
 <meta name="twitter:title" content="سوپرایز موزیک قزوین | ریوان بند">
 <meta name="twitter:description" content="اجرای زنده موسیقی برای سورپرایز عاشقانه، تولد و جشن‌های شما در قزوین.">
 <meta name="twitter:image" content="https://rivanband.ir/logo.jpg">
+<meta name="geo.region" content="IR-30">
+<meta name="geo.placename" content="Qazvin">
+<meta name="ICBM" content="36.2688, 50.0041">
 <link rel="canonical" href="https://rivanband.ir/">
 <link rel="icon" type="image/png" sizes="512x512" href="favicon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
@@ -34,6 +37,7 @@
   "description": "اجرای زنده موسیقی و سوپرایز موزیک برای سورپرایز عاشقانه، خواستگاری، تولد و جشن‌ها در قزوین",
   "image": "https://rivanband.ir/logo.jpg",
   "url": "https://rivanband.ir/",
+  "inLanguage": "fa",
   "telephone": "+989106109622",
   "sameAs": ["https://instagram.com/rivanband1"],
   "areaServed": {
@@ -48,9 +52,51 @@
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "5",
-    "reviewCount": "11"
+    "reviewCount": "18"
   },
   "review": [
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "محمدی"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+      "reviewBody": "بسیار رضایت داشتیم از کارتون، موفق و پیروز باشید"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "رامین عمویی"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+      "reviewBody": "از مشاوره تا اجرا خیلی هماهنگ شده و عالی پیش بردید"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "مانی فرجاد"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+      "reviewBody": "انتخاب همیشگی ما شدید، با تشکر از زحمات شما"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "ریحانه"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+      "reviewBody": "اولین تجربه‌ی سوپرایز موزیک ما بود، برای مادرم خیلی یادگاری فوق‌العاده‌ای شد"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "نادر ابراهیمی"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+      "reviewBody": "با تشکر از هماهنگی‌های فوق‌العاده‌تون، بسیار رضایت داشتم از تیم شما"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "آذر قزوینی"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+      "reviewBody": "رضایت کامل داشتم، برای من و همسرم یک خاطره‌ی به‌یادماندنی ساخته شد"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "رجبی"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5"},
+      "reviewBody": "بسیار رضایت داشتیم و ممنون از شما"
+    },
     {
       "@type": "Review",
       "author": {"@type": "Person", "name": "امیر رستمی"},
@@ -633,6 +679,62 @@
     color:var(--brass);
     font-size:.85rem;
     border-top:1px solid var(--line);
+    padding-bottom:calc(34px + 64px);
+  }
+
+  /* ===== Mobile sticky action bar ===== */
+  .mobile-bar{
+    position:fixed; inset-inline:0; bottom:0; z-index:200;
+    display:none;
+    background:rgba(20,17,12,.94);
+    backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);
+    padding:8px 6px calc(8px + env(safe-area-inset-bottom));
+  }
+  .mobile-bar{display:flex; align-items:stretch; justify-content:space-around;}
+  .mobile-bar a{
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    color:var(--brass);
+    font-size:.68rem;
+    padding:6px 10px;
+    border-radius:12px;
+    transition:color .2s, background .2s;
+  }
+  .mobile-bar a:hover, .mobile-bar a:active{color:var(--gold-bright); background:rgba(232,178,61,.08);}
+  .mobile-bar svg{width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:1.7;}
+  .mobile-bar a:first-child svg{fill:currentColor; stroke:none;}
+  @media (max-width:780px){
+    .mobile-bar{display:flex;}
+  }
+
+  /* ===== Scroll reveal ===== */
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in-view{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+  }
+
+  /* ===== Back to top ===== */
+  .to-top{
+    position:fixed;
+    left:18px; bottom:18px;
+    z-index:190;
+    width:46px; height:46px;
+    border-radius:50%;
+    background:var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 26px -8px rgba(232,178,61,.6);
+    opacity:0; visibility:hidden; transform:translateY(10px);
+    transition:opacity .25s, transform .25s, visibility .25s;
+  }
+  .to-top.show{opacity:1; visibility:visible; transform:translateY(0);}
+  .to-top svg{width:20px; height:20px; fill:#1a1408;}
+  @media (max-width:780px){
+    .to-top{bottom:78px;}
   }
 </style>
 </head>
@@ -870,6 +972,69 @@
               <span class="review-name">آقای رمضانی</span>
             </div>
           </div>
+          <div class="review-card">
+            <svg class="quote-icon" viewBox="0 0 24 24"><path d="M7 8c-2.2 0-4 1.8-4 4v5h6v-6H6c0-1.7 1.3-3 3-3V8zm10 0c-2.2 0-4 1.8-4 4v5h6v-6h-3c0-1.7 1.3-3 3-3V8z"/></svg>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">بسیار رضایت داشتیم از کارتون، موفق و پیروز باشید🙏</p>
+            <div class="review-author">
+              <span class="review-avatar">م</span>
+              <span class="review-name">آقای محمدی</span>
+            </div>
+          </div>
+          <div class="review-card">
+            <svg class="quote-icon" viewBox="0 0 24 24"><path d="M7 8c-2.2 0-4 1.8-4 4v5h6v-6H6c0-1.7 1.3-3 3-3V8zm10 0c-2.2 0-4 1.8-4 4v5h6v-6h-3c0-1.7 1.3-3 3-3V8z"/></svg>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">با تشکر از شما، از مشاوره تا اجرا خیلی هماهنگ شده و عالی پیش بردید ✅</p>
+            <div class="review-author">
+              <span class="review-avatar">ر</span>
+              <span class="review-name">آقای رامین عمویی</span>
+            </div>
+          </div>
+          <div class="review-card">
+            <svg class="quote-icon" viewBox="0 0 24 24"><path d="M7 8c-2.2 0-4 1.8-4 4v5h6v-6H6c0-1.7 1.3-3 3-3V8zm10 0c-2.2 0-4 1.8-4 4v5h6v-6h-3c0-1.7 1.3-3 3-3V8z"/></svg>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">انتخاب همیشگی ما شدید، با تشکر از زحمات شما 🌹</p>
+            <div class="review-author">
+              <span class="review-avatar">م</span>
+              <span class="review-name">آقای مانی فرجاد</span>
+            </div>
+          </div>
+          <div class="review-card">
+            <svg class="quote-icon" viewBox="0 0 24 24"><path d="M7 8c-2.2 0-4 1.8-4 4v5h6v-6H6c0-1.7 1.3-3 3-3V8zm10 0c-2.2 0-4 1.8-4 4v5h6v-6h-3c0-1.7 1.3-3 3-3V8z"/></svg>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">اولین تجربه‌ی سوپرایز موزیک ما بود، برای مادرم خیلی یادگاری فوق‌العاده‌ای شد 🌺😍</p>
+            <div class="review-author">
+              <span class="review-avatar">ر</span>
+              <span class="review-name">خانم ریحانه</span>
+            </div>
+          </div>
+          <div class="review-card">
+            <svg class="quote-icon" viewBox="0 0 24 24"><path d="M7 8c-2.2 0-4 1.8-4 4v5h6v-6H6c0-1.7 1.3-3 3-3V8zm10 0c-2.2 0-4 1.8-4 4v5h6v-6h-3c0-1.7 1.3-3 3-3V8z"/></svg>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">با تشکر از شما و هماهنگی‌های فوق‌العاده‌تون، بسیار رضایت داشتم از تیم شما 🌹</p>
+            <div class="review-author">
+              <span class="review-avatar">ن</span>
+              <span class="review-name">آقای نادر ابراهیمی</span>
+            </div>
+          </div>
+          <div class="review-card">
+            <svg class="quote-icon" viewBox="0 0 24 24"><path d="M7 8c-2.2 0-4 1.8-4 4v5h6v-6H6c0-1.7 1.3-3 3-3V8zm10 0c-2.2 0-4 1.8-4 4v5h6v-6h-3c0-1.7 1.3-3 3-3V8z"/></svg>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">درود و وقت بخیر، از تیم شما رضایت کامل داشتم و برای من و همسرم یک خاطره‌ی به‌یادماندنی ساخته شد.</p>
+            <div class="review-author">
+              <span class="review-avatar">آ</span>
+              <span class="review-name">خانم آذر قزوینی</span>
+            </div>
+          </div>
+          <div class="review-card">
+            <svg class="quote-icon" viewBox="0 0 24 24"><path d="M7 8c-2.2 0-4 1.8-4 4v5h6v-6H6c0-1.7 1.3-3 3-3V8zm10 0c-2.2 0-4 1.8-4 4v5h6v-6h-3c0-1.7 1.3-3 3-3V8z"/></svg>
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">عرض ادب و احترام، یک سال پیش تجربه داشتیم که در خدمت شما باشیم، بسیار رضایت داشتیم و ممنون از شما</p>
+            <div class="review-author">
+              <span class="review-avatar">ر</span>
+              <span class="review-name">آقای رجبی</span>
+            </div>
+          </div>
           <div class="review-invite">
             <p>تجربه‌ی همکاری‌تون با ریوان بند برامون ارزشمنده؛ خوشحال می‌شیم نظرتون رو با ما در میون بذارید.</p>
           </div>
@@ -986,11 +1151,48 @@
   </div>
 </footer>
 
+<div class="mobile-bar">
+  <a href="tel:09106109622" aria-label="تماس با ریوان بند">
+    <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1L6.6 10.8z"/></svg>
+    <span>تماس</span>
+  </a>
+  <a href="https://ig.me/m/rivanband1" target="_blank" rel="noopener" aria-label="اینستاگرام ریوان بند">
+    <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+    <span>اینستاگرام</span>
+  </a>
+  <a href="#videos">
+    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    <span>ویدیوها</span>
+  </a>
+  <a href="#reviews">
+    <svg viewBox="0 0 24 24"><path d="M12 17.3 6.2 21l1.6-6.6L2.5 9.9l6.8-.6L12 3l2.7 6.3 6.8.6-5.3 4.5L18 21z"/></svg>
+    <span>نظرات</span>
+  </a>
+</div>
+
+<button class="to-top" id="toTop" aria-label="برگشت به بالا">
+  <svg viewBox="0 0 24 24"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+</button>
+
 <script>
   const header = document.getElementById('site-header');
+  const toTop = document.getElementById('toTop');
   window.addEventListener('scroll', () => {
     header.classList.toggle('scrolled', window.scrollY > 40);
+    toTop.classList.toggle('show', window.scrollY > 500);
   });
+  toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  document.querySelectorAll('main > section:not(.hero)').forEach(el => el.classList.add('reveal'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
 </body>
