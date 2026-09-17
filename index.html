@@ -624,10 +624,37 @@
     font-weight:800; font-size:1.05rem;
   }
   .review-name{color:var(--gold-bright); font-size:.92rem; font-weight:600;}
-  .review-invite{text-align:center; margin-top:6px;}
-  .review-invite p{color:var(--brass); font-size:.95rem; line-height:1.9; max-width:480px; margin:0 auto;}
+  .review-form{
+    background:linear-gradient(160deg, rgba(232,178,61,.07), transparent 60%), var(--bg-panel-2);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:26px 22px;
+    text-align:center;
+  }
+  .review-form-head p{color:var(--brass); font-size:.95rem; line-height:1.9; max-width:480px; margin:0 auto 18px;}
+  .review-input{
+    display:block;
+    width:100%;
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    color:var(--cream);
+    font-family:'Vazirmatn', sans-serif;
+    font-size:.95rem;
+    padding:14px 16px;
+    margin-bottom:12px;
+    transition:border-color .2s;
+  }
+  .review-input::placeholder{color:var(--brass);}
+  .review-input:focus{outline:none; border-color:var(--gold);}
+  .review-textarea{resize:vertical; min-height:100px;}
+  .review-form-note{color:var(--brass); font-size:.8rem; margin-top:14px; line-height:1.8;}
   .review-cta{
     display:flex; align-items:center; justify-content:center; gap:12px;
+    width:100%;
+    background:transparent;
+    font-family:'Vazirmatn', sans-serif;
+    cursor:pointer;
     text-align:center;
     line-height:1.7;
     margin-top:8px;
@@ -1098,13 +1125,18 @@
               <span class="review-name">آقای سلیمپور</span>
             </div>
           </div>
-          <div class="review-invite">
-            <p>تجربه‌ی همکاری‌تون با ریوان بند برامون ارزشمنده؛ خوشحال می‌شیم نظرتون رو با ما در میون بذارید.</p>
+          <div class="review-form">
+            <div class="review-form-head">
+              <p>اگر تجربه‌ای از استفاده از خدمات ما داشتید، خوشحال می‌شیم بنویسید</p>
+            </div>
+            <input type="text" id="rf-name" class="review-input" placeholder="نام شما">
+            <textarea id="rf-text" class="review-input review-textarea" placeholder="نظر شما" rows="4"></textarea>
+            <button type="button" id="rf-submit" class="review-cta">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+              ارسال نظر در اینستاگرام
+            </button>
+            <p class="review-form-note" id="rf-note">با زدن دکمه، متن نظرتون کپی میشه و دایرکت اینستاگرام باز میشه؛ فقط پیست (Paste) کنید و بفرستید.</p>
           </div>
-          <a class="review-cta" href="https://ig.me/m/rivanband1" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
-            ثبت نظر در اینستاگرام
-          </a>
         </div>
       </details>
     </div>
@@ -1256,6 +1288,35 @@
     });
   }, {threshold:.12});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const rfBtn = document.getElementById('rf-submit');
+  if (rfBtn) {
+    rfBtn.addEventListener('click', () => {
+      const name = document.getElementById('rf-name').value.trim();
+      const text = document.getElementById('rf-text').value.trim();
+      const note = document.getElementById('rf-note');
+      if (!name || !text) {
+        note.textContent = 'لطفاً اول اسم و نظرتون رو بنویسید.';
+        note.style.color = '#e07a5f';
+        return;
+      }
+      const message = 'سلام، نظر من درباره ریوان بند:\nنام: ' + name + '\nنظر: ' + text;
+      const openInstagram = () => window.open('https://ig.me/m/rivanband1', '_blank');
+      const instructions = 'متن نظرتون کپی شد ✅\n\nالان صفحه‌ی دایرکت اینستاگرام باز میشه.\n\n۱) روی کادر نوشتن پیام، انگشتتون رو نگه دارید (لمس طولانی)\n۲) گزینه‌ی «Paste» رو بزنید تا متن بیاد\n۳) دکمه‌ی ارسال (پیکان ➤) رو بزنید';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(message).then(() => {
+          alert(instructions);
+          openInstagram();
+        }).catch(() => {
+          alert('نشد متن رو خودکار کپی کنیم. لطفاً این پیام رو خودتون کپی کنید:\n\n' + message);
+          openInstagram();
+        });
+      } else {
+        alert('لطفاً این پیام رو خودتون کپی کنید:\n\n' + message);
+        openInstagram();
+      }
+    });
+  }
 </script>
 
 </body>
