@@ -407,6 +407,24 @@
     text-align:center;
     overflow:hidden;
   }
+  .terms-badge{
+    position:absolute;
+    top:92px; left:18px;
+    z-index:20;
+    background:rgba(31,25,18,.7);
+    backdrop-filter:blur(6px);
+    border:1px solid var(--gold);
+    color:var(--gold-bright);
+    font-size:.78rem;
+    font-weight:600;
+    padding:8px 16px;
+    border-radius:30px;
+    transition:background .2s, transform .2s;
+  }
+  .terms-badge:hover{background:var(--gold); color:#1a1408; transform:translateY(-2px);}
+  @media (max-width:600px){
+    .terms-badge{top:76px; left:12px; font-size:.7rem; padding:6px 13px;}
+  }
   .vinyl-stage{
     position:relative;
     width:220px; height:220px;
@@ -892,6 +910,7 @@
     <nav>
       <a href="#videos">ویدیوهای اجرا</a>
       <a href="#services">خدمات</a>
+      <a href="#terms">قوانین رزرو</a>
       <a href="#about">درباره ما</a>
       <a href="#contact">تماس</a>
     </nav>
@@ -910,6 +929,7 @@
 <main>
 
   <section class="hero">
+    <a href="#terms" class="terms-badge">قوانین رزرو</a>
     <div class="wrap">
       <div class="vinyl-stage">
         <div class="vinyl-halo"></div>
@@ -1323,6 +1343,30 @@
         <details class="faq-item">
           <summary>برای سورپرایز عاشقانه چه اجرایی پیشنهاد می‌کنید؟</summary>
           <p>بسته به فضای مراسم و سلیقه‌ی شما، از اجرای زنده‌ی ساز و آواز تا ورود غافلگیرکننده‌ی گروه رو می‌تونیم طراحی کنیم. برای مشاوره رایگان تماس بگیرید.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="terms">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow" style="justify-content:center;">قوانین رزرو</div>
+        <h2>شرایط و ضوابط رزرو ریوان بند</h2>
+        <p>لطفاً پیش از رزرو، این موارد رو مطالعه کنید</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>ماده ۱ — شرایط پرداخت</summary>
+          <p>جهت رزرو قطعی مراسم، سفارش‌دهنده موظف است حداقل ۵۰٪ از مبلغ کل پکیج را در زمان رزرو پرداخت نماید. مابقی مبلغ باید حداکثر تا یک روز پیش از تاریخ اجرای برنامه به‌طور کامل تسویه شود. در صورت عدم تسویه‌ی کامل تا تاریخ مذکور، برگزارکننده مجاز به لغو برنامه بدون تعهد به ارائه‌ی خدمات خواهد بود.</p>
+        </details>
+        <details class="faq-item">
+          <summary>ماده ۲ — شرایط تأخیر در حضور</summary>
+          <p>در صورتی که تأخیر سفارش‌دهنده در محل اجرای برنامه بیش از ۳۰ دقیقه باشد، مبلغ یک میلیون تومان بابت دیرکرد مجدداً دریافت می‌گردد. در صورت تأخیر بیش از ۶۰ دقیقه، ۵۰٪ از مبلغ کل پکیج مجدداً دریافت خواهد شد. در صورت نبود شرایط لازم، تیم مجاز به ترک محل پس از زمان مقرر بوده و هیچ مسئولیتی متوجه آن‌ها نخواهد بود.</p>
+        </details>
+        <details class="faq-item">
+          <summary>ماده ۳ — شرایط فسخ و تعویق</summary>
+          <p>در صورت اعلام فسخ یا کنسلی برنامه یک روز مانده به اجرا، ۲۰٪ از مبلغ کل کسر شده و مابقی عودت داده می‌شود. در صورت کنسلی برنامه در روز مشخص‌شده‌ی اجرا، تمامی وجه پرداختی بدون استثنا سوخت شده و هیچ‌گونه تعهدی نسبت به عودت وجه یا ارائه‌ی خدمات در تاریخ آتی وجود نخواهد داشت.</p>
         </details>
       </div>
     </div>
