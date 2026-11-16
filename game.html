@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>بازی نت‌های طلایی | ریوان بند</title>
+<meta name="description" content="بازی نت‌های طلایی ریوان بند؛ ۵۰ برنده، ۱۰٪ تخفیف روی پکیج سوپرایز.">
+<meta name="robots" content="noindex">
+<style>
+@font-face{font-family:Dib;src:url(diba.ttf)}
+@font-face{font-family:Din;src:url(dino.otf)}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#e8b23d;--gold2:#f4c94f;--cream:#f2ead6;--brass:#b3a07a;--line:#3a2f1e;--bg:#0a0908;
+--foil:linear-gradient(115deg,#7a5316 0%,#d9a93f 18%,#fff1b8 34%,#c8912c 50%,#f6d77a 66%,#8d6119 84%,#e7bb52 100%)}
+html,body{height:100%}
+body{background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(214,165,60,.18),transparent 70%),var(--bg);color:var(--cream);font-family:Dib,Din,sans-serif;display:flex;flex-direction:column;align-items:center;min-height:100vh;padding:16px 14px 24px}
+.top{width:100%;max-width:420px;display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--brass)}
+.top a{color:var(--gold2);text-decoration:none;border:1px solid rgba(232,178,61,.5);border-radius:20px;padding:6px 14px}
+h1{margin:14px 0 4px;font-weight:400;font-size:26px;background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:center}
+.sub{font-size:14px;color:var(--brass);text-align:center;margin-bottom:12px}
+.hud{width:100%;max-width:420px;display:flex;justify-content:space-between;font-size:15px;margin-bottom:8px;color:var(--cream)}
+.hud b{color:var(--gold2);font-weight:400;font-family:Din,Dib;font-size:17px}
+.stage{position:relative;width:100%;max-width:420px;aspect-ratio:7/10;border:2px solid rgba(232,178,61,.55);border-radius:18px;overflow:hidden;background:#0d0b08;box-shadow:0 20px 50px -20px rgba(0,0,0,.8)}
+canvas{width:100%;height:100%;display:block;touch-action:none}
+.overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px;background:rgba(10,9,8,.82);gap:12px}
+.overlay[hidden]{display:none}
+.overlay h2{font-weight:400;font-size:24px;background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+.overlay p{font-size:15px;line-height:1.9;color:#e3d2a0}
+.btn{display:inline-block;margin-top:6px;background:var(--foil);color:#16110a;border:0;border-radius:40px;padding:12px 28px;font-family:Dib,sans-serif;font-size:16px;cursor:pointer;text-decoration:none}
+.btn.ghost{background:none;color:var(--gold2);border:1.5px solid var(--gold)}
+.note{font-family:Din,sans-serif;font-size:12px;color:var(--brass);line-height:1.6}
+.lanes{width:100%;max-width:420px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.lanes button{height:64px;border-radius:14px;border:1.5px solid rgba(232,178,61,.5);background:linear-gradient(#1f1912,#120f0b);color:var(--gold2);font-size:22px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.lanes button:active{background:linear-gradient(#3a2a10,#1d160c)}
+.foot{margin-top:14px;font-size:12px;color:var(--brass);text-align:center;max-width:420px;line-height:1.9}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <span>ریوان بند</span>
+  <a href="index.html">بازگشت به سایت</a>
+</div>
+<h1>بازی نت‌های طلایی</h1>
+<div class="sub">نت‌ها را در زمان درست بزن · ۴۰ نت بگیر و برنده شو</div>
+
+<div class="hud">
+  <span>امتیاز: <b id="score">0</b></span>
+  <span>جان: <b id="lives">♥♥♥</b></span>
+  <span>گرفته‌شده: <b id="hits">0</b>/<b>40</b></span>
+</div>
+
+<div class="stage" id="stage">
+  <canvas id="c"></canvas>
+
+  <div class="overlay" id="startOv">
+    <h2>آماده‌ای؟</h2>
+    <p>نت‌های طلایی از بالا می‌افتند.<br>وقتی به خط طلایی رسیدند، ستون مربوطه را بزن.<br>۴۰ نت بگیر و ۳ جان را نگه دار.</p>
+    <button class="btn" id="startBtn">شروع بازی</button>
+    <div class="note">بازی با کیبورد: D F J K<br>در موبایل: پایین صفحه را لمس کن</div>
+  </div>
+
+  <div class="overlay" id="endOv" hidden>
+    <h2 id="endTitle">تبریک!</h2>
+    <p id="endText"></p>
+    <button class="btn" id="dmBtn" hidden>ارسال به دایرکت اینستاگرام</button>
+    <div class="note" id="endNote"></div>
+    <button class="btn ghost" id="againBtn">دوباره</button>
+  </div>
+</div>
+
+<div class="lanes" id="lanes">
+  <button data-l="0" aria-label="ستون ۱">◆</button>
+  <button data-l="1" aria-label="ستون ۲">◆</button>
+  <button data-l="2" aria-label="ستون ۳">◆</button>
+  <button data-l="3" aria-label="ستون ۴">◆</button>
+</div>
+
+<div class="foot">
+  بازی‌کنندگان اول <b>۵۰ نفر</b> که کامل ببرند، کد <b>۱۰٪ تخفیف</b> روی هر پکیج سوپرایز می‌گیرند.<br>
+  شرایط کامل در دایرکت اینستاگرام ما: <b>@rivanband1</b>
+</div>
+
+<script>
+(function(){
+  const TARGET = 40, LIVES_MAX = 3, LANES = 4;
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  const stage = document.getElementById('stage');
+  const $ = id => document.getElementById(id);
+  let W = 0, H = 0, HIT_Y = 0, laneW = 0;
+  let notes = [], flashes = [];
+  let score = 0, lives = LIVES_MAX, hits = 0;
+  let running = false, last = 0, spawnTimer = 0, spawnEvery = 0.9, speed = 260, elapsed = 0;
+  let lastLane = -1;
+
+  function resize(){
+    const r = stage.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    W = r.width; H = r.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    laneW = W / LANES;
+    HIT_Y = H * 0.8;
+  }
+  window.addEventListener('resize', resize);
+
+  function reset(){
+    notes = []; flashes = [];
+    score = 0; lives = LIVES_MAX; hits = 0;
+    spawnTimer = 0; spawnEvery = 0.9; speed = 260; elapsed = 0; lastLane = -1;
+    updateHud();
+  }
+
+  function updateHud(){
+    $('score').textContent = score;
+    $('hits').textContent = hits;
+    $('lives').textContent = '♥'.repeat(lives) + '♡'.repeat(LIVES_MAX - lives);
+  }
+
+  function spawn(){
+    let lane;
+    do { lane = Math.floor(Math.random() * LANES); } while (lane === lastLane && Math.random() < 0.6);
+    lastLane = lane;
+    notes.push({ lane, y: -40, alive: true });
+  }
+
+  function hitLane(l){
+    if (!running) return;
+    let best = null, bestD = Infinity;
+    for (const n of notes){
+      if (!n.alive || n.lane !== l) continue;
+      const d = Math.abs(n.y - HIT_Y);
+      if (d < bestD){ bestD = d; best = n; }
+    }
+    if (best && bestD < 38){
+      best.alive = false;
+      hits++;
+      score += bestD < 14 ? 15 : 10;
+      flashes.push({ lane: l, t: 0, good: true });
+      if (hits >= TARGET) return endGame(true);
+    } else {
+      flashes.push({ lane: l, t: 0, good: false });
+    }
+    updateHud();
+  }
+
+  function loseLife(){
+    lives--;
+    updateHud();
+    if (lives <= 0) endGame(false);
+  }
+
+  function endGame(won){
+    running = false;
+    const ov = $('endOv');
+    ov.hidden = false;
+    if (won){
+      let alreadyWon = false;
+      try { alreadyWon = localStorage.getItem('rb_game_won') === '1'; localStorage.setItem('rb_game_won','1'); } catch(e){}
+      $('endTitle').textContent = 'تبریک! برنده شدی';
+      $('endText').innerHTML = 'امتیاز تو: <b>' + score + '</b><br>' +
+        'از این صفحه <b>اسکرین‌شات</b> بگیر که امتیاز و این پیام دیده شود، و آن را با <b>یوزرنیم اینستاگرامت</b> به دایرکت ما بفرست تا کد ۱۰٪ تخفیف را دریافت کنی.';
+      const dm = $('dmBtn');
+      dm.hidden = false;
+      dm.onclick = copyAndOpen;
+      $('endNote').textContent = alreadyWon
+        ? 'این دستگاه قبلاً برد ثبت کرده است. اگر قبلاً پیام داده‌ای، نیازی به ارسال دوباره نیست.'
+        : 'هر حساب اینستاگرام فقط یک‌بار کد می‌گیرد. کد برای رزرو تا ۷ روز معتبر است.';
+    } else {
+      $('endTitle').textContent = 'نزدیک بود!';
+      $('endText').innerHTML = 'امتیاز تو: <b>' + score + '</b> · گرفته‌شده: <b>' + hits + '</b> از ۴۰<br>دوباره امتحان کن.';
+      $('dmBtn').hidden = true;
+      $('endNote').textContent = '';
+    }
+  }
+
+  function copyAndOpen(){
+    const txt = 'سلام، برنده‌ی بازی نت‌های طلایی شدم. امتیاز: ' + score + ' · یوزرنیم من: ';
+    const go = () => window.open('https://ig.me/m/rivanband1', '_blank');
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(() => {
+        alert('متن پیام کپی شد. در دایرکت بگذار، یوزرنیمت را جلویش بنویس و اسکرین‌شات را هم بفرست.');
+        go();
+      }, () => { alert(txt); go(); });
+    } else { alert(txt); go(); }
+  }
+
+  function frame(ts){
+    if (!running) return;
+    const dt = Math.min(0.05, (ts - last) / 1000); last = ts;
+    elapsed += dt;
+    speed = Math.min(480, 260 + elapsed * 6);
+    spawnEvery = Math.max(0.42, 0.9 - elapsed * 0.012);
+    spawnTimer += dt;
+    if (spawnTimer >= spawnEvery){ spawnTimer = 0; spawn(); }
+
+    for (const n of notes){
+      if (!n.alive) continue;
+      n.y += speed * dt;
+      if (n.y > HIT_Y + 45){ n.alive = false; loseLife(); if (!running) break; }
+    }
+    notes = notes.filter(n => n.alive);
+    for (const f of flashes) f.t += dt;
+    flashes = flashes.filter(f => f.t < 0.25);
+
+    draw();
+    requestAnimationFrame(frame);
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const bg = ctx.createLinearGradient(0,0,0,H);
+    bg.addColorStop(0,'#0d0b08'); bg.addColorStop(1,'#1a140b');
+    ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+
+    for (let i=1;i<LANES;i++){
+      ctx.strokeStyle = 'rgba(232,178,61,.12)';
+      ctx.beginPath(); ctx.moveTo(i*laneW,0); ctx.lineTo(i*laneW,H); ctx.stroke();
+    }
+
+    for (const f of flashes){
+      const a = (1 - f.t / 0.25) * 0.35;
+      ctx.fillStyle = f.good ? `rgba(244,201,79,${a})` : `rgba(224,122,95,${a})`;
+      ctx.fillRect(f.lane*laneW, 0, laneW, H);
+    }
+
+    ctx.strokeStyle = 'rgba(244,201,79,.85)';
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(0,HIT_Y); ctx.lineTo(W,HIT_Y); ctx.stroke();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(232,178,61,.25)';
+    ctx.beginPath(); ctx.moveTo(0,HIT_Y+38); ctx.lineTo(W,HIT_Y+38); ctx.stroke();
+
+    for (const n of notes){
+      const cx = n.lane * laneW + laneW/2;
+      const w = laneW * 0.62, h = 26;
+      const x = cx - w/2, y = n.y - h/2;
+      const g = ctx.createLinearGradient(x,y,x+w,y+h);
+      g.addColorStop(0,'#7a5316'); g.addColorStop(.35,'#fff1b8'); g.addColorStop(.6,'#d9a93f'); g.addColorStop(1,'#8d6119');
+      ctx.fillStyle = g;
+      roundRect(x, y, w, h, 9); ctx.fill();
+      ctx.fillStyle = 'rgba(20,17,12,.85)';
+      ctx.beginPath(); ctx.arc(cx, n.y, 5, 0, Math.PI*2); ctx.fill();
+    }
+  }
+
+  function roundRect(x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+    ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
+  }
+
+  function start(){
+    resize(); reset();
+    $('startOv').hidden = true; $('endOv').hidden = true;
+    running = true; last = performance.now();
+    requestAnimationFrame(frame);
+  }
+
+  $('startBtn').addEventListener('click', start);
+  $('againBtn').addEventListener('click', start);
+
+  canvas.addEventListener('pointerdown', e => {
+    const r = canvas.getBoundingClientRect();
+    hitLane(Math.min(LANES-1, Math.floor((e.clientX - r.left) / (r.width/LANES))));
+  });
+  document.querySelectorAll('#lanes button').forEach(b => {
+    b.addEventListener('pointerdown', e => { e.preventDefault(); hitLane(+b.dataset.l); });
+  });
+  const keys = {d:0, f:1, j:2, k:3};
+  window.addEventListener('keydown', e => {
+    const l = keys[e.key.toLowerCase()];
+    if (l !== undefined && !e.repeat) hitLane(l);
+  });
+
+  resize();
+  draw();
+})();
+</script>
+</body>
+</html>
