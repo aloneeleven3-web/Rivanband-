@@ -565,6 +565,15 @@
     transition:background .2s, color .2s;
   }
   .btn-ghost:hover{background:var(--gold); color:#1a1408;}
+  .btn-game{position:relative; display:inline-flex; align-items:center; gap:8px; padding:14px 20px; border-radius:50px; white-space:nowrap; max-width:100%; background:linear-gradient(115deg,#7a5316 0%,#d9a93f 18%,#fff1b8 34%,#c8912c 50%,#f6d77a 66%,#8d6119 84%,#e7bb52 100%); color:#16110a; font-weight:900; font-size:1.05rem; text-decoration:none; overflow:hidden; animation:gamePulse 1.8s infinite; transition:transform .2s;}
+  .btn-game:hover{transform:translateY(-3px) scale(1.03);}
+  .btn-game::after{content:""; position:absolute; top:0; left:-75%; width:50%; height:100%; background:linear-gradient(120deg,transparent,rgba(255,255,255,.75),transparent); animation:gameShine 2.6s infinite;}
+  .btn-game .badge{background:#16110a; color:#f4c94f; border-radius:20px; padding:4px 10px; font-size:.8rem; white-space:nowrap; animation:gameBob 1.2s ease-in-out infinite;}
+  .btn-game .spark{display:inline-block; animation:gameSpin 3s linear infinite;}
+  @keyframes gamePulse{0%{box-shadow:0 0 0 0 rgba(244,201,79,.7);} 70%{box-shadow:0 0 0 18px rgba(244,201,79,0);} 100%{box-shadow:0 0 0 0 rgba(244,201,79,0);}}
+  @keyframes gameShine{0%{left:-75%;} 60%,100%{left:125%;}}
+  @keyframes gameBob{0%,100%{transform:translateY(0);} 50%{transform:translateY(-3px);}}
+  @keyframes gameSpin{to{transform:rotate(360deg);}}
   .btn-solid{
     background:var(--gold);
     color:#1a1408;
@@ -1008,13 +1017,13 @@
       <p class="lead">دنبال یه سوپرایز به‌یادموندنی هستید؟ ریوان بند لحظه‌های عاشقانه، تولد و جشنتون رو با اجرای زنده و سورپرایز موزیک به خاطره‌ای ماندگار تبدیل می‌کنه.</p>
 
       <div class="hero-actions">
+        <a class="btn-game" href="game.html"><span class="spark">✦</span> بازی کن، ۱۰٪ تخفیف بگیر <span class="badge">۵۰ برنده</span></a>
         <a class="btn-solid" href="tel:09106109622">
           <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1L6.6 10.8z"/></svg>
           رزرو و هماهنگی
         </a>
         <a class="btn-ghost" href="#videos">دیدن ویدیوهای اجرا</a>
         <a class="btn-ghost" href="#reviews">دیدن نظر مشتریان</a>
-        <a class="btn-ghost" href="game.html">بازی و ۱۰٪ تخفیف 🎵</a>
       </div>
 
       <svg class="waveform" viewBox="0 0 640 80" aria-hidden="true">
