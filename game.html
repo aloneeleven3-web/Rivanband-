@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>تکرار ملودی طلایی | ریوان بند</title>
-<meta name="description" content="بازی تکرار ملودی ریوان بند؛ ۵۰ برنده، ۱۰٪ تخفیف روی پکیج سوپرایز.">
+<title>حدس ملودی با گوش | ریوان بند</title>
+<meta name="description" content="بازی حدس ملودی ریوان بند؛ ۱۰٪ تخفیف روی پکیج سوپرایز.">
 <meta name="robots" content="noindex">
 <style>
 @font-face{font-family:Dib;src:url(diba.ttf)}
@@ -15,31 +15,37 @@
 body{background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(214,165,60,.2),transparent 70%),var(--bg);color:var(--cream);font-family:Dib,Din,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:16px 14px 26px;overflow-x:hidden}
 .top{width:100%;max-width:420px;display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--brass)}
 .top a{color:var(--gold2);text-decoration:none;border:1px solid rgba(232,178,61,.5);border-radius:20px;padding:6px 14px}
-h1{margin:14px 0 4px;font-weight:400;font-size:26px;background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:center}
-.sub{font-size:14px;color:var(--brass);text-align:center;margin-bottom:14px;line-height:1.8}
-.hud{width:100%;max-width:420px;display:flex;justify-content:space-between;align-items:center;font-size:15px;margin-bottom:10px}
+h1{margin:14px 0 4px;font-weight:400;font-size:25px;background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:center}
+.sub{font-size:14px;color:var(--brass);text-align:center;margin-bottom:12px;line-height:1.8}
+.hud{width:100%;max-width:420px;display:flex;justify-content:space-between;align-items:center;font-size:15px;margin-bottom:8px}
 .hud b{color:var(--gold2);font-weight:400;font-family:Din,Dib;font-size:17px}
-.status{width:100%;max-width:420px;text-align:center;font-size:17px;color:var(--gold2);min-height:28px;margin-bottom:10px}
-.board{width:100%;max-width:420px;aspect-ratio:1;display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:14px;border:2px solid rgba(232,178,61,.55);border-radius:22px;background:#0d0b08;box-shadow:0 20px 50px -20px rgba(0,0,0,.8)}
-.pad{position:relative;border-radius:18px;border:1.5px solid rgba(232,178,61,.45);background:linear-gradient(160deg,#241b10,#120e08);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:44px;color:rgba(232,178,61,.55);transition:transform .08s,box-shadow .15s,background .15s,color .15s;user-select:none;touch-action:manipulation}
-.pad:active{transform:scale(.96)}
-.pad.on{background:var(--foil);color:#16110a;box-shadow:0 0 30px 6px rgba(244,201,79,.55);transform:scale(1.03)}
-.pad.ring::after{content:"";position:absolute;inset:-6px;border-radius:22px;border:2px solid var(--gold2);animation:ring .6s ease-out forwards;pointer-events:none}
-@keyframes ring{from{opacity:.9;transform:scale(.9)}to{opacity:0;transform:scale(1.15)}}
-.board.shake{animation:shake .4s}
-@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(4px)}}
-.progress{width:100%;max-width:420px;height:6px;border-radius:6px;background:#2a2014;margin-top:14px;overflow:hidden}
-.progress i{display:block;height:100%;width:0;background:var(--foil);transition:width .4s}
-.note{font-family:Din,sans-serif;font-size:12px;color:var(--brass);line-height:1.6;text-align:center;margin-top:8px}
+.status{width:100%;max-width:420px;text-align:center;font-size:16px;color:var(--gold2);min-height:26px;margin-bottom:10px}
+.slots{width:100%;max-width:420px;display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin-bottom:14px;min-height:52px}
+.slot{width:40px;height:52px;border-radius:12px;border:1.5px solid rgba(232,178,61,.4);background:#120e08;display:flex;align-items:center;justify-content:center;font-size:14px;color:#e3d2a0}
+.slot.small{width:36px;height:44px;font-size:12px;border-radius:10px}
+.slot.ok{background:linear-gradient(#2c4a1c,#1a2e11);border-color:#7dc36a;color:#dff5d5}
+.slot.bad{background:linear-gradient(#4a1f1a,#2e110d);border-color:#e07a5f;color:#ffd7c9}
+.slot.cur{box-shadow:0 0 14px rgba(244,201,79,.6);border-color:var(--gold2)}
+.keys{width:100%;max-width:420px;display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.keys button{height:64px;border-radius:14px;border:1.5px solid rgba(232,178,61,.5);background:linear-gradient(#241b10,#120e08);color:var(--gold2);font-family:Dib,sans-serif;font-size:16px;cursor:pointer;transition:transform .08s,background .15s,box-shadow .15s;touch-action:manipulation}
+.keys button:active{transform:scale(.95)}
+.keys button.on{background:var(--foil);color:#16110a;box-shadow:0 0 26px 4px rgba(244,201,79,.55)}
+.keys button:disabled{opacity:.45;cursor:default}
+.keys .wide{grid-column:span 2}
+.row2{width:100%;max-width:420px;display:flex;gap:10px;margin-top:14px}
+.row2 button{flex:1;padding:13px;border-radius:40px;border:1.5px solid var(--gold);background:none;color:var(--gold2);font-family:Dib,sans-serif;font-size:15px;cursor:pointer}
+.row2 button.main{background:var(--foil);color:#16110a;border:0}
+.row2 button:disabled{opacity:.4;cursor:default}
+.note{font-family:Din,sans-serif;font-size:12px;color:var(--brass);line-height:1.6;text-align:center;margin-top:10px;max-width:420px}
 .foot{margin-top:14px;font-size:12.5px;color:var(--brass);text-align:center;max-width:420px;line-height:1.9}
-.overlay{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px;background:rgba(10,9,8,.9);gap:12px;overflow-y:auto}
+.overlay{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:22px;background:rgba(10,9,8,.93);gap:12px;overflow-y:auto}
 .overlay[hidden]{display:none}
-.overlay h2{font-weight:400;font-size:26px;background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+.overlay h2{font-weight:400;font-size:25px;background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.5}
 .overlay p{font-size:15px;line-height:1.9;color:#e3d2a0;max-width:360px}
 .shot{border:2px solid var(--gold2);border-radius:14px;padding:12px 14px;color:var(--gold2);font-size:16px;line-height:1.8;max-width:360px;background:rgba(232,178,61,.08)}
-.btn{display:inline-block;margin-top:4px;background:var(--foil);color:#16110a;border:0;border-radius:40px;padding:13px 28px;font-family:Dib,sans-serif;font-size:16px;cursor:pointer;text-decoration:none}
+.btn{display:inline-block;margin-top:4px;background:var(--foil);color:#16110a;border:0;border-radius:40px;padding:13px 26px;font-family:Dib,sans-serif;font-size:16px;cursor:pointer;max-width:100%}
 .btn.ghost{background:none;color:var(--gold2);border:1.5px solid var(--gold)}
-.msg{background:#15110b;border:1px dashed rgba(232,178,61,.6);border-radius:12px;padding:12px;font-size:14px;line-height:1.8;max-width:360px;text-align:right;color:#f2ead6}
+.msg{background:#15110b;border:1px dashed rgba(232,178,61,.6);border-radius:12px;padding:12px;font-size:14px;line-height:1.8;max-width:360px;text-align:right}
 .confetti{position:fixed;top:-20px;width:9px;height:14px;z-index:11;pointer-events:none;animation:fall linear forwards}
 @keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
 </style>
@@ -50,156 +56,256 @@ h1{margin:14px 0 4px;font-weight:400;font-size:26px;background:var(--foil);-webk
   <span>ریوان بند</span>
   <a href="index.html">بازگشت به سایت</a>
 </div>
-<h1>تکرار ملودی طلایی</h1>
-<div class="sub">ملودی را گوش کن و همان ترتیب را بزن.<br>۵ مرحله را ببر و برنده شو.</div>
+<h1>حدس ملودی با گوش</h1>
+<div class="sub">مرحله‌ی اول: ۷ نت · بعد از آن می‌توانی ادامه بدهی: مرحله‌ی دوم ۱۴ نت.<br>در هر مرحله باید <b>همه‌ی نت‌ها</b> درست باشد.</div>
 
 <div class="hud">
-  <span>مرحله: <b id="round">۱</b> / <b>۵</b></span>
+  <span>مرحله: <b id="stageNo">۱</b> / <b>۲</b></span>
   <span>جان: <b id="lives">♥♥♥</b></span>
+  <span>شنیدن: <b id="plays">۰</b></span>
 </div>
-<div class="status" id="status">آماده‌ای؟ دکمه‌ی شروع را بزن</div>
+<div class="status" id="status">آماده‌ای؟ دکمه‌ی «پخش ملودی» را بزن</div>
 
-<div class="board" id="board">
-  <div class="pad" data-l="0">♪</div>
-  <div class="pad" data-l="1">♫</div>
-  <div class="pad" data-l="2">♬</div>
-  <div class="pad" data-l="3">♩</div>
+<div class="slots" id="slots"></div>
+
+<div class="keys" id="keys">
+  <button data-n="0">دو</button>
+  <button data-n="1">ر</button>
+  <button data-n="2">می</button>
+  <button data-n="3">فا</button>
+  <button data-n="4">سل</button>
+  <button data-n="5">لا</button>
+  <button data-n="6">سی</button>
+  <button class="wide" id="clearBtn">پاک کردن آخرین نت</button>
 </div>
-<div class="progress"><i id="bar"></i></div>
 
+<div class="row2">
+  <button id="playBtn" class="main">▶ پخش ملودی</button>
+  <button id="submitBtn" disabled>ارسال حدس</button>
+</div>
+
+<div class="note">بازی با کیبورد: C D E F G A B یا ۱ تا ۷ · Enter برای ارسال · Backspace برای پاک کردن</div>
 <div class="foot" style="margin-top:16px">
-  بازی‌کنندگان اول <b>۵۰ نفر</b> که کامل ببرند، کد <b>۱۰٪ تخفیف</b> روی هر پکیج سوپرایز می‌گیرند.
+  کد <b>۱۰٪ تخفیف</b> روی هر پکیج سوپرایز. هر حساب اینستاگرام یک‌بار و تا ۷ روز معتبر است.
 </div>
-<div class="note">بازی با کیبورد: ۱ ۲ ۳ ۴ یا D F J K · در موبایل: روی پد بزن</div>
 
 <!-- شروع -->
 <div class="overlay" id="startOv">
-  <h2>آماده‌ای؟</h2>
-  <p>ملودی را گوش کن، بعد همان ترتیب نت‌ها را بزن. هر مرحله یک نت بیشتر می‌شود.</p>
-  <button class="btn" id="startBtn">شروع بازی</button>
+  <h2>حدس با گوش</h2>
+  <p>ملودی را گوش کن و همان ترتیب نت‌ها را بزن. سه جان داری؛ هر حدس اشتباه یک جان می‌گیرد، ولی ملودی را هر چند بار می‌توانی بشنوی.</p>
+  <button class="btn" id="startBtn">شروع</button>
+</div>
+
+<!-- انتخاب بعد از مرحله‌ی اول -->
+<div class="overlay" id="choiceOv" hidden>
+  <h2>تبریک! مرحله‌ی اول را بردی 🎉</h2>
+  <p>می‌خواهی همین حالا <b>۱۰٪ تخفیف</b> بگیری، یا ادامه بدهی و مرحله‌ی دوم (۱۴ نت) را ببری و <b>۵۰۰ هزار تومان</b> تخفیف بگیری؟ جان‌هایت همان می‌ماند.</p>
+  <button class="btn" id="contBtn">ادامه می‌دهم، مرحله‌ی دوم</button>
+  <button class="btn ghost" id="takeBtn">همین حالا ۱۰٪ تخفیف می‌گیرم</button>
 </div>
 
 <!-- برد -->
 <div class="overlay" id="winOv" hidden>
-  <h2>تبریک! برنده شدی 🎉</h2>
+  <h2 id="winTitle">تبریک! برنده شدی 🎉</h2>
   <div class="shot">📸 حتماً از همین صفحه <b>اسکرین‌شات</b> بگیر<br>و با یوزرنیم اینستاگرامت به دایرکت ما بفرست.</div>
-  <p>کد ۱۰٪ تخفیف را بعد از پیام دادن دریافت می‌کنی. برای هر حساب اینستاگرام فقط یک‌بار و تا ۷ روز معتبر است.</p>
+  <p>کد ۱۰٪ تخفیف را بعد از پیام دادن دریافت می‌کنی.</p>
   <button class="btn" id="dmBtn">باز کردن دایرکت اینستاگرام</button>
   <div class="msg" id="msgWrap" hidden>
     <div id="msgText"></div>
     <button class="btn ghost" id="copyBtn" style="margin-top:10px;padding:8px 20px;font-size:14px">کپی متن پیام</button>
   </div>
   <div class="note" id="winNote"></div>
-  <button class="btn ghost" id="againWin">دوباره</button>
+  <button class="btn ghost" id="againWin">دوباره از اول</button>
 </div>
 
 <!-- باخت -->
 <div class="overlay" id="loseOv" hidden>
   <h2>نزدیک بود!</h2>
-  <p>سه بار اشتباه زدی. دوباره امتحان کن؛ ملودی‌ها همان هستند، فقط یادت بماند.</p>
+  <p id="loseText">جان‌هایت تمام شد. دوباره امتحان کن؛ ملودی‌ها همان‌اند.</p>
   <button class="btn" id="againLose">شروع دوباره</button>
 </div>
 
 <script>
 (function(){
   const $ = id => document.getElementById(id);
-  const ROUNDS = 5, LIVES_MAX = 3;
-  const FREQ = [523.25, 587.33, 659.25, 783.99]; // C5 D5 E5 G5
-  const pads = [...document.querySelectorAll('.pad')];
-  const board = $('board');
-  const KEYS = {'1':0,'2':1,'3':2,'4':3,d:0,f:1,j:2,k:3};
+  const LIVES_MAX = 3;
+  // مرحله ۱: ۷ نت · مرحله ۲: ۱۴ نت (ملودی‌های اصلی، ساخته‌شده برای این بازی)
+  const MELODIES = [
+    [0, 2, 4, 6, 5, 4, 2],
+    [4, 5, 6, 5, 4, 2, 0, 2, 4, 5, 6, 4, 2, 0]
+  ];
+  const NOTE_NAMES = ['دو','ر','می','فا','سل','لا','سی'];
+  const FREQ = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88];
+  const BEAT = 0.52;
 
-  let seq = [], step = 0, round = 1, lives = LIVES_MAX;
-  let phase = 'idle', timers = [], ctx = null;
+  const keys = [...document.querySelectorAll('.keys button[data-n]')];
+  const slots = $('slots');
+  let stage = 0, guess = [], lives = LIVES_MAX, plays = 0, busy = false, ctx = null, timers = [];
+  const cur = () => MELODIES[stage];
 
   function audio(){
-    if (!ctx){
-      try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){ ctx = null; }
-    }
+    if (!ctx){ try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){ ctx = null; } }
     if (ctx && ctx.state === 'suspended') ctx.resume();
     return ctx;
   }
-  function tone(l){
+  function tone(n, at, dur){
     const a = audio(); if (!a) return;
     const o = a.createOscillator(), g = a.createGain();
-    o.type = 'triangle'; o.frequency.value = FREQ[l];
-    g.gain.setValueAtTime(0.0001, a.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.35, a.currentTime + 0.02);
-    g.gain.exponentialRampToValueAtTime(0.0001, a.currentTime + 0.5);
+    o.type = 'triangle'; o.frequency.value = FREQ[n];
+    const t0 = a.currentTime + at;
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(0.32, t0 + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
     o.connect(g); g.connect(a.destination);
-    o.start(); o.stop(a.currentTime + 0.55);
+    o.start(t0); o.stop(t0 + dur + 0.05);
   }
-  function flash(l, sound){
-    const p = pads[l];
-    p.classList.add('on');
-    p.classList.remove('ring'); void p.offsetWidth; p.classList.add('ring');
-    if (sound) tone(l);
-    setTimeout(() => p.classList.remove('on'), 280);
+  function light(n, ms){
+    const b = keys[n];
+    b.classList.add('on');
+    setTimeout(() => b.classList.remove('on'), ms);
   }
-  function status(t){ $('status').textContent = t; }
-  function hud(){
-    $('round').textContent = round;
-    $('lives').textContent = '♥'.repeat(lives) + '♡'.repeat(LIVES_MAX - lives);
-    $('bar').style.width = ((round - 1) / ROUNDS * 100) + '%';
-  }
-  function later(fn, ms){ const t = setTimeout(fn, ms); timers.push(t); return t; }
+  function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
   function clearTimers(){ timers.forEach(clearTimeout); timers = []; }
+  function status(t){ $('status').textContent = t; }
 
-  function reset(){
-    clearTimers();
-    seq = []; step = 0; round = 1; lives = LIVES_MAX; phase = 'idle';
-    hud();
+  function hud(){
+    $('stageNo').textContent = stage + 1;
+    $('lives').textContent = '♥'.repeat(lives) + '♡'.repeat(LIVES_MAX - lives);
+    $('plays').textContent = plays;
   }
 
-  function startRound(){
-    while (seq.length < round + 1) seq.push(Math.floor(Math.random() * 4));
-    step = 0; phase = 'show';
-    status('مرحله ' + round + ': گوش کن…');
-    hud();
-    playSeq();
-  }
-
-  function playSeq(){
-    phase = 'show';
-    let i = 0;
-    const tick = () => {
-      if (i >= seq.length){
-        phase = 'input';
-        status('نوبت توست! همان ترتیب را بزن');
-        return;
-      }
-      flash(seq[i], true);
-      i++;
-      later(tick, 680);
-    };
-    later(tick, 450);
-  }
-
-  function press(l){
-    if (phase !== 'input') return;
-    flash(l, true);
-    if (l === seq[step]){
-      step++;
-      if (step === seq.length){
-        phase = 'wait';
-        if (round >= ROUNDS){ later(win, 600); }
-        else {
-          round++; hud();
-          status('درست بود! مرحله ' + round);
-          later(startRound, 900);
-        }
-      }
-    } else {
-      phase = 'wait';
-      lives--; hud();
-      board.classList.remove('shake'); void board.offsetWidth; board.classList.add('shake');
-      if (lives <= 0){ later(lose, 500); }
-      else {
-        status('اشتباه بود! دوباره همین مرحله');
-        later(() => { step = 0; playSeq(); }, 1100);
-      }
+  function renderSlots(result){
+    slots.innerHTML = '';
+    const len = cur().length;
+    for (let i = 0; i < len; i++){
+      const s = document.createElement('div');
+      s.className = 'slot' + (len > 7 ? ' small' : '');
+      if (result){ s.classList.add(result[i] ? 'ok' : 'bad'); }
+      else if (i === guess.length) s.classList.add('cur');
+      s.textContent = i < guess.length ? NOTE_NAMES[guess[i]] : '؟';
+      slots.appendChild(s);
     }
+    hud();
+    $('submitBtn').disabled = guess.length !== len || busy;
+    keys.forEach(k => k.disabled = busy || guess.length >= len);
+    $('clearBtn').disabled = busy || guess.length === 0;
   }
+
+  function playMelody(){
+    if (busy) return;
+    audio();
+    plays++;
+    busy = true;
+    $('playBtn').disabled = true;
+    status('گوش کن…');
+    clearTimers();
+    cur().forEach((n, i) => {
+      tone(n, i * BEAT, BEAT * 0.9);
+      later(() => light(n, BEAT * 800), i * BEAT * 1000);
+    });
+    later(() => {
+      busy = false;
+      $('playBtn').disabled = false;
+      status('حالا ترتیب نت‌ها را بزن');
+      renderSlots(null);
+    }, cur().length * BEAT * 1000 + 250);
+    renderSlots(null);
+  }
+
+  function press(n){
+    if (busy || guess.length >= cur().length) return;
+    audio();
+    tone(n, 0, 0.35);
+    light(n, 220);
+    guess.push(n);
+    renderSlots(null);
+  }
+
+  function clearLast(){
+    if (busy || !guess.length) return;
+    guess.pop(); renderSlots(null);
+  }
+
+  function submit(){
+    if (busy || guess.length !== cur().length) return;
+    busy = true;
+    const res = guess.map((n, i) => n === cur()[i]);
+    renderSlots(res);
+    $('clearBtn').disabled = true;
+    if (res.every(Boolean)){
+      later(stage === 0 ? askChoice : winFinal, 900);
+      return;
+    }
+    lives--;
+    hud();
+    status(lives > 0 ? 'اشتباه بود! سبزها درست است. دوباره گوش کن.' : 'جان‌هایت تمام شد.');
+    later(() => {
+      if (lives <= 0){ lose(); return; }
+      guess = []; busy = false;
+      renderSlots(null);
+      status('ملودی را دوباره بشنو و حدس بزن');
+    }, 1800);
+  }
+
+  function askChoice(){
+    busy = false;
+    $('choiceOv').hidden = false;
+  }
+
+  function continueToStage2(){
+    $('choiceOv').hidden = true;
+    stage = 1; guess = []; busy = false;
+    renderSlots(null);
+    status('مرحله‌ی دوم: ملودی ۱۴ نتی را بشنو');
+  }
+
+  function takeDiscount(){
+    $('choiceOv').hidden = true;
+    showWin('تبریک! ۱۰٪ تخفیف برنده شدی 🎉', 'یک کد برای هر حساب اینستاگرام.');
+  }
+
+  function winFinal(){
+    busy = false;
+    showWin('تبریک! ۵۰۰ هزار تومان تخفیف برنده شدی 🎉', 'یک کد برای هر حساب اینستاگرام.');
+  }
+
+  function showWin(title, note){
+    let already = false;
+    try { already = localStorage.getItem('rb_game_won') === '1'; localStorage.setItem('rb_game_won','1'); } catch(e){}
+    $('winTitle').textContent = title;
+    $('winNote').textContent = already
+      ? 'این دستگاه قبلاً برد ثبت کرده. اگر قبلاً پیام داده‌ای، لازم نیست دوباره بفرستی.'
+      : note;
+    $('winOv').hidden = false;
+    $('msgWrap').hidden = true;
+    confetti();
+  }
+
+  function lose(){
+    busy = false;
+    $('loseOv').hidden = false;
+  }
+
+  function msg(){
+    return 'سلام، من برنده‌ی بازی حدس ملودی ریوان بند شدم 🎵\nاسکرین‌شات برد را هم فرستادم.\nیوزرنیم اینستاگرام من: ';
+  }
+
+  $('dmBtn').addEventListener('click', () => {
+    window.open('https://ig.me/m/rivanband1', '_blank');
+    $('msgText').textContent = msg();
+    $('msgWrap').hidden = false;
+  });
+  $('copyBtn').addEventListener('click', () => {
+    const t = msg();
+    const selectMsg = () => {
+      const r = document.createRange(); r.selectNodeContents($('msgText'));
+      const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      $('copyBtn').textContent = 'متن را انتخاب کن و کپی کن';
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(() => { $('copyBtn').textContent = 'کپی شد ✓'; }, selectMsg);
+    } else selectMsg();
+  });
 
   function confetti(){
     const cols = ['#f4c94f','#e8b23d','#fff1b8','#c8912c','#f6d77a'];
@@ -215,68 +321,33 @@ h1{margin:14px 0 4px;font-weight:400;font-size:26px;background:var(--foil);-webk
     }
   }
 
-  function win(){
-    phase = 'over';
-    status('');
-    $('bar').style.width = '100%';
-    let already = false;
-    try { already = localStorage.getItem('rb_game_won') === '1'; localStorage.setItem('rb_game_won', '1'); } catch(e){}
-    $('winNote').textContent = already
-      ? 'این دستگاه قبلاً برد ثبت کرده. اگر قبلاً پیام داده‌ای، لازم نیست دوباره بفرستی.'
-      : 'یک کد برای هر حساب اینستاگرام.';
-    $('winOv').hidden = false;
-    $('msgWrap').hidden = true;
-    confetti();
-  }
-
-  function lose(){
-    phase = 'over';
-    $('loseOv').hidden = false;
-  }
-
-  function msg(){
-    return 'سلام، من برنده‌ی بازی تکرار ملودی ریوان بند شدم 🎵\nاسکرین‌شات برد را هم فرستادم.\nیوزرنیم اینستاگرام من: ';
-  }
-
-  // دکمه‌ی دایرکت: اول پنجره باز می‌شود (برای موبایل)، بعد متن نمایش/کپی می‌شود
-  $('dmBtn').addEventListener('click', () => {
-    window.open('https://ig.me/m/rivanband1', '_blank');
-    $('msgText').textContent = msg();
-    $('msgWrap').hidden = false;
-  });
-  $('copyBtn').addEventListener('click', () => {
-    const t = msg();
-    const done = () => { $('copyBtn').textContent = 'کپی شد ✓'; };
-    if (navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(t).then(done, () => { selectMsg(); });
-    } else { selectMsg(); }
-  });
-  function selectMsg(){
-    const r = document.createRange(); r.selectNodeContents($('msgText'));
-    const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-    $('copyBtn').textContent = 'متن را انتخاب کن و کپی کن';
-  }
-
   function begin(){
     audio();
-    reset();
-    $('startOv').hidden = true; $('winOv').hidden = true; $('loseOv').hidden = true;
-    startRound();
+    clearTimers();
+    stage = 0; guess = []; lives = LIVES_MAX; plays = 0; busy = false;
+    ['startOv','winOv','loseOv','choiceOv'].forEach(id => $(id).hidden = true);
+    status('آماده‌ای؟ دکمه‌ی «پخش ملودی» را بزن');
+    renderSlots(null);
   }
+
   $('startBtn').addEventListener('click', begin);
   $('againWin').addEventListener('click', begin);
   $('againLose').addEventListener('click', begin);
-
-  pads.forEach(p => p.addEventListener('pointerdown', e => {
-    e.preventDefault();
-    press(+p.dataset.l);
-  }));
+  $('contBtn').addEventListener('click', continueToStage2);
+  $('takeBtn').addEventListener('click', takeDiscount);
+  $('playBtn').addEventListener('click', playMelody);
+  $('submitBtn').addEventListener('click', submit);
+  $('clearBtn').addEventListener('click', clearLast);
+  keys.forEach(k => k.addEventListener('pointerdown', e => { e.preventDefault(); press(+k.dataset.n); }));
+  const KEYMAP = {c:0,d:1,e:2,f:3,g:4,a:5,b:6,'1':0,'2':1,'3':2,'4':3,'5':4,'6':5,'7':6};
   window.addEventListener('keydown', e => {
     const k = e.key.toLowerCase();
-    if (k in KEYS && !e.repeat) press(KEYS[k]);
+    if (k in KEYMAP && !e.repeat) press(KEYMAP[k]);
+    if (k === 'backspace') clearLast();
+    if (k === 'enter') submit();
   });
 
-  hud();
+  renderSlots(null);
 })();
 </script>
 </body>
