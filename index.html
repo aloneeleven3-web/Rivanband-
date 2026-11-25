@@ -560,6 +560,8 @@
   .btn-game:hover{transform:translateY(-3px) scale(1.03);}
   .btn-game::after{content:""; position:absolute; top:0; left:-75%; width:50%; height:100%; background:linear-gradient(120deg,transparent,rgba(255,255,255,.75),transparent); animation:gameShine 2.6s infinite;}
   .btn-game .badge{background:#16110a; color:#f4c94f; border-radius:20px; padding:4px 10px; font-size:.8rem; white-space:nowrap; animation:gameBob 1.2s ease-in-out infinite;}
+  .btn-game .badge.expired{position:relative; overflow:hidden; color:#fff; background:#7a1212; animation:none;}
+  .btn-game .badge.expired::after{content:""; position:absolute; left:-10%; top:50%; width:120%; height:3px; background:#ff2d2d; box-shadow:0 0 6px rgba(255,45,45,.8); transform:translateY(-50%) rotate(-25deg);}
   .btn-game .spark{display:inline-block; animation:gameSpin 3s linear infinite;}
   @keyframes gamePulse{0%{box-shadow:0 0 0 0 rgba(244,201,79,.7);} 70%{box-shadow:0 0 0 18px rgba(244,201,79,0);} 100%{box-shadow:0 0 0 0 rgba(244,201,79,0);}}
   @keyframes gameShine{0%{left:-75%;} 60%,100%{left:125%;}}
@@ -1008,7 +1010,7 @@
       <p class="lead">دنبال یه سوپرایز به‌یادموندنی هستید؟ ریوان بند لحظه‌های عاشقانه، تولد و جشنتون رو با اجرای زنده و سورپرایز موزیک به خاطره‌ای ماندگار تبدیل می‌کنه.</p>
 
       <div class="hero-actions">
-        <a class="btn-game" href="game.html"><span class="spark">✦</span> بازی کن، ۱۰٪ تخفیف بگیر <span class="badge">۵۰ برنده</span></a>
+        <a class="btn-game" href="game.html"><span class="spark">✦</span> بازی کن، ۱۰٪ تخفیف بگیر <span class="badge expired">۵۰ برنده</span></a>
         <a class="btn-solid" href="tel:09106109622">
           <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1L6.6 10.8z"/></svg>
           رزرو و هماهنگی
